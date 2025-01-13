@@ -67,6 +67,7 @@
 # Version 1.214 - 25-Mar-2024 - added avtech display for scene and mixer unmuted channels
 # Version 1.215 - 27-Mar-2024 - added audio decoding for pre/warm-up/service/post loops to avsummary
 # Version 1.216 - 15-Nov-2024 - added verse displays to songs in song leader highlight display
+# Version 1.217 - 13-Jan-2025 - improve avsummary display
 
 
 include_once("settings-common.php");
@@ -83,7 +84,7 @@ $lookfor = array( # service participants in open text
 );
 
 
-$Version = 'roadmap.php - Version 1.216 - 15-Nov-2024';
+$Version = 'roadmap.php - Version 1.217 - 13-Jan-2025';
 date_default_timezone_set($SITE['timezone']);
 $includeMode = isset($doInclude)?true:false;
 $testMode = false;
@@ -815,7 +816,7 @@ array (
 
 function display_avstate() {
 	global $OBSscene,$MixerChan;
-	$out = "<span class=\"avstate\">A/V Scene: \"<span class=\"avstateb\">$OBSscene</span>\" - Mixer UNmuted: ";
+	$out = "--------<br><span class=\"avstate\">A/V Scene: \"<span class=\"avstateb\">$OBSscene</span>\" - Mixer UNmuted: ";
 	foreach ($MixerChan as $chan => $S) {
 		if($S[0] == 'ON') {
 		  $out .= $S[1]."(<span class=\"avstateb\">$chan</span>) ";
