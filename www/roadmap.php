@@ -68,6 +68,7 @@
 # Version 1.215 - 27-Mar-2024 - added audio decoding for pre/warm-up/service/post loops to avsummary
 # Version 1.216 - 15-Nov-2024 - added verse displays to songs in song leader highlight display
 # Version 1.217 - 13-Jan-2025 - improve avsummary display
+# Version 1.218 - 07-Feb-2025 - add avcue display to avsummary
 
 
 include_once("settings-common.php");
@@ -84,7 +85,7 @@ $lookfor = array( # service participants in open text
 );
 
 
-$Version = 'roadmap.php - Version 1.217 - 13-Jan-2025';
+$Version = 'roadmap.php - Version 1.218 - 07-Feb-2025';
 date_default_timezone_set($SITE['timezone']);
 $includeMode = isset($doInclude)?true:false;
 $testMode = false;
@@ -142,7 +143,7 @@ if (file_exists($aFile)) { $allJSON = unserialize(file_get_contents($aFile)); }
 if((isset($_GET['list']) or isset($_GET['listall'])) and !isset($_FILES['upload']['tmp_name'])) {
 	$filterList = isset($_GET['listall'])?false:true;
 	if($filterList) {
-		$displayOldest = date('Y-m-d',strtotime('-2 months'));
+		$displayOldest = date('Y-m-d',strtotime('-6 weeks'));
 		$Oldest = "List of available roadmaps starting $displayOldest ";
 	} else {
 		$displayOldest = '2018-01-01';
@@ -1852,8 +1853,11 @@ a:hover, a:active, a:focus {
   text-align: center;
   color: #39F;
   font-weight: bold;
-  margin: 5px auto !important;
-	display: none;
+	font-size: medium;
+ 	display: block;
+	padding-left: 20px;
+	padding-top: 20px;
+	text-align: left;
 }
 
 .avstate {
